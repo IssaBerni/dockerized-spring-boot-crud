@@ -1,0 +1,47 @@
+# Define the version of the Docker Compose file format
+version: '3.7'
+
+# Define the services that will be run as containers
+services:
+  
+  # Define the first service 'java_app', which runs the Java application
+  java_app:
+    # Name of the container
+    container_name: java_app
+    # Use a custom Docker image for the Java application
+    image: essalution44/java_app:1.0.0
+    # Build the image using the Dockerfile in the current directory
+    build: .
+    # Map port 8080 in the container to port 8081 on the host machine
+    ports:
+      - "8081:8080"
+    # Set environment variables that the application will use
+    environment:
+      - DATABASE_URL=jdbc:postgresql://java_db:5432/postgres  # JDBC connection URL for the database
+      - DATABASE_USERNAME=postgres  # Database username
+      - DATABASE_PASSWORD=postgres  # Database password
+    # Ensure the 'java_db' service is up before starting this service
+    depends_on:
+      - java_db
+
+  # Define the second service 'java_db', which runs the PostgreSQL database
+  java_db:
+    # Name of the container
+    container_name: java_db
+    # Use the official PostgreSQL image version 12
+    image: postgres:12
+    # Map port 5432 in the container to port 5432 on the host machine
+    ports:
+      - "5432:5432"
+    # Set environment variables for PostgreSQL configuration
+    environment:
+      POSTGRES_USER: postgres  # Database user
+      POSTGRES_PASSWORD: postgres  # Database password
+      POSTGRES_DB: postgres  # Database name to be created
+    # Define volumes to persist the PostgreSQL data
+    volumes:
+      - pgdata:/var/lib/postgresql/data  # Persistent storage for the database
+
+# Define named volumes, in this case for PostgreSQL data
+volumes:
+  pgdata: {}

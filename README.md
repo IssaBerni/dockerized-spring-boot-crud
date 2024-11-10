@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 dockerized-spring-boot-crud
 
 Project Overview
@@ -165,3 +166,15 @@ Common Issues
 Conclusion
 
 This is a basic Spring Boot application demonstrating the use of JPA for database operations and Docker for containerization. The application provides a REST API for performing CRUD operations on a User entity, making it easy to interact with the database via HTTP requests. You can extend this project by adding more functionality, such as authentication, advanced database operations, or frontend integration
+=======
+# Java API Service Starter
+
+This is a minimal Java API service starter based on [Google Cloud Run Quickstart](https://cloud.google.com/run/docs/quickstarts/build-and-deploy/deploy-java-service).
+
+## Getting Started
+
+Server should run automatically when starting a workspace. To run manually, run:
+```sh
+mvn spring-boot:run
+```
+>>>>>>> 733584a (Initial commit)
