@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 dockerized-spring-boot-crud
 
 Project Overview
